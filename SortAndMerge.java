@@ -177,36 +177,36 @@ public class SortAndMerge {
 		int splitList2[] = new int[0];
 		int currentList = 1;
 		
-		splitList1 = FillNextIndex(splitList1, unsplitList[0]);						// initialize the value of the array's first index to list 1 for compatibility with for-loop
+		splitList1 = FillNextIndex(splitList1, unsplitList[0]); // initialize the value of the array's first index to list 1 for compatibility with for-loop
 		
 		for (int i = 1; i < unsplitList.length; i++) 
 		{
-				if((unsplitList[i] > unsplitList[i-1]) && currentList == 1) 		// (1>) if current index value is greater than previous index value and list 1 is in focus
+				if((unsplitList[i] > unsplitList[i-1]) && currentList == 1) // (1>) if current index value is greater than previous index value and list 1 is in focus
 				{
 					splitList1 = FillNextIndex(splitList1, unsplitList[i]);
 					currentList = 1;
 				}
-				else if((unsplitList[i] > unsplitList[i-1]) && currentList == 2) 	// (2>) if current index value is greater than previous index value and list 2 is in focus
+				else if((unsplitList[i] > unsplitList[i-1]) && currentList == 2) // (2>) if current index value is greater than previous index value and list 2 is in focus
 				{
 					splitList2 = FillNextIndex(splitList2, unsplitList[i]);
 					currentList = 2;
 				}
-				else if((unsplitList[i] < unsplitList[i-1]) && currentList == 1) 	// (2<) if current index value is less than previous index value and list 1 is in focus
+				else if((unsplitList[i] < unsplitList[i-1]) && currentList == 1) // (2<) if current index value is less than previous index value and list 1 is in focus
 				{
 					splitList2 = FillNextIndex(splitList2, unsplitList[i]);
 					currentList = 2;
 				}
-				else if((unsplitList[i] < unsplitList[i-1]) && currentList == 2) 	// (1<) if current index value is less than previous index value and list 2 is in focus
+				else if((unsplitList[i] < unsplitList[i-1]) && currentList == 2) // (1<) if current index value is less than previous index value and list 2 is in focus
 				{
 					splitList1 = FillNextIndex(splitList1, unsplitList[i]);
 					currentList = 1;
 				}
-				else if((unsplitList[i] == unsplitList[i-1]) && currentList == 1) 	// (1=) if current index value is equal to previous index value and list 1 is in focus
+				else if((unsplitList[i] == unsplitList[i-1]) && currentList == 1) // (1=) if current index value is equal to previous index value and list 1 is in focus
 				{
 					splitList1 = FillNextIndex(splitList1, unsplitList[i]);
 					currentList = 1;
 				}
-				else if((unsplitList[i] == unsplitList[i-1]) && currentList == 2) 	// (1=) if current index value is equal to previous index value and list 2 is in focus
+				else if((unsplitList[i] == unsplitList[i-1]) && currentList == 2) // (1=) if current index value is equal to previous index value and list 2 is in focus
 				{
 					splitList2 = FillNextIndex(splitList2, unsplitList[i]);
 					currentList = 2;
@@ -275,17 +275,17 @@ public class SortAndMerge {
 		{
 			for(int i = 1; i < mergedArray.length; i++) 
 			{
-				if(unmergedList1[list1Index] >= mergedArray[i-1] && unmergedList2[list2Index] >= mergedArray[i-1])						// if list 1 AND list 2's values are greater than or equal to array's previous value
+				if(unmergedList1[list1Index] >= mergedArray[i-1] && unmergedList2[list2Index] >= mergedArray[i-1]) // if list 1 AND list 2's values are greater than or equal to array's previous value
 				{
 					if(unmergedList1[list1Index] < unmergedList2[list2Index] ||
-							unmergedList1[list1Index] == unmergedList2[list2Index] || 													// and if list 1 is less than list 2, equal to list 2, or equal to array's previous value
+							unmergedList1[list1Index] == unmergedList2[list2Index] || // and if list 1 is less than list 2, equal to list 2, or equal to array's previous value
 							unmergedList1[list1Index] == mergedArray[i-1])
 					{
 						mergedArray[i] = unmergedList1[list1Index];
 						mergedArrayIndex++;
 						list1Index++;
 					}
-					else if(unmergedList1[list1Index] > unmergedList2[list2Index] ||													// and if list 2 is less than list 1 or list 2 is equal to array's previous value
+					else if(unmergedList1[list1Index] > unmergedList2[list2Index] || // and if list 2 is less than list 1 or list 2 is equal to array's previous value
 							unmergedList2[list2Index] == mergedArray[i-1])											
 					{
 						mergedArray[i] = unmergedList2[list2Index];
@@ -293,33 +293,33 @@ public class SortAndMerge {
 						list2Index++;
 					}
 				}
-				else if(unmergedList1[list1Index] >= mergedArray[i-1] && unmergedList2[list2Index] < mergedArray[i-1])					// else if list 1's value is greater than or equal to array and list 2's value is less than array	
+				else if(unmergedList1[list1Index] >= mergedArray[i-1] && unmergedList2[list2Index] < mergedArray[i-1])	// else if list 1's value is greater than or equal to array and list 2's value is less than array	
 				{
 					mergedArray[i] = unmergedList1[list1Index];
 					mergedArrayIndex++;
 					list1Index++;
 				}
-				else if(unmergedList2[list2Index] >= mergedArray[i-1] && unmergedList1[list1Index] < mergedArray[i-1])					// else if list 2's value is greater than or equal to array and list 1's value is less than array	
+				else if(unmergedList2[list2Index] >= mergedArray[i-1] && unmergedList1[list1Index] < mergedArray[i-1])	// else if list 2's value is greater than or equal to array and list 1's value is less than array	
 				{
 					mergedArray[i] = unmergedList2[list2Index];
 					mergedArrayIndex++;
 					list2Index++;
 				}
-				else if((unmergedList2[list2Index] < mergedArray[i-1]) && (unmergedList1[list1Index] < mergedArray[i-1]))				// else if array's previous value is greater than both lists
+				else if((unmergedList2[list2Index] < mergedArray[i-1]) && (unmergedList1[list1Index] < mergedArray[i-1])) // else if array's previous value is greater than both lists
 				{
-					if(unmergedList2[list2Index] < unmergedList1[list1Index]) 															// and if list 2's value is less than list 1
+					if(unmergedList2[list2Index] < unmergedList1[list1Index]) // and if list 2's value is less than list 1
 					{
 						mergedArray[i] = unmergedList2[list2Index];
 						mergedArrayIndex++;
 						list2Index++;
 					}
-					else if(unmergedList2[list2Index] > unmergedList1[list1Index]) 														// and if list 2's value is greater than list 1
+					else if(unmergedList2[list2Index] > unmergedList1[list1Index]) // and if list 2's value is greater than list 1
 					{
 						mergedArray[i] = unmergedList1[list1Index];
 						mergedArrayIndex++;
 						list1Index++;
 					}
-					else if(unmergedList2[list2Index] == unmergedList1[list1Index]) 													// and if list 2's value is equal to list 1
+					else if(unmergedList2[list2Index] == unmergedList1[list1Index]) // and if list 2's value is equal to list 1
 					{
 						mergedArray[i] = unmergedList1[list1Index];
 						mergedArrayIndex++;
